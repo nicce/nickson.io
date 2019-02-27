@@ -1,7 +1,7 @@
 {
-  "name": "playground",
+  "name": "nickson.io",
   "version": "1.0.0",
-  "description": "Playground for learning node js",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
