@@ -9,5 +9,8 @@ The goal is to create a multiplayer game running in the browser. The game is a 2
 ## Run locally
 
 1. Run `npm install` for downloading dependecies
-2. Run `node server.js` for starting the express server on port 8080
+2. Run `node server.js` or `npm start` for starting the express server on port 8080
 3. Browse to http://localhost:8080
+
+## Contributing
+See todo.txt for what needs to be done. 
