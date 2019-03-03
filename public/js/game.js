@@ -25,12 +25,15 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image("ship", "assets/spaceShips_001.png");
   this.load.image("otherPlayer", "assets/enemyBlack5.png");
+  this.load.image("hit", "assets/laserGreen_hit.png");
+  this.load.image("shot", "assets/laserGreen_shot.png");
 }
 
 function create() {
   var self = this;
   this.socket = io();
   this.otherPlayers = this.physics.add.group();
+  this.cursors = this.input.keyboard.createCursorKeys();
 
   this.socket.on("currentPlayers", function(players) {
     Object.keys(players).forEach(function(id) {
@@ -64,22 +67,27 @@ function create() {
 
 function update() {
   if (this.ship) {
-    this.input.keyboard.on("keydown_W", event => {
+    this.input.keyboard.on("keydown_W", () => {
       this.physics.velocityFromRotation(
         this.ship.rotation + 0.5,
         20,
         this.ship.body.acceleration
       );
     });
-    this.input.keyboard.on("keydown_A", event => {
+    this.input.keyboard.on("keydown_A", () => {
       this.ship.setAngularVelocity(-150);
     });
-    this.input.keyboard.on("keydown_D", event => {
+    this.input.keyboard.on("keydown_D", () => {
       this.ship.setAngularVelocity(150);
     });
-    this.input.keyboard.on("keydown_S", event => {
+    this.input.keyboard.on("keydown_S", () => {
       this.ship.setAngularVelocity(0);
     });
+
+    //keyboard_SPACE not working so this is a workaround
+    if (this.cursors.space.isDown) {
+      // TODO Add shooting animation
+    }
 
     // emit player movement
     var x = this.ship.x;
@@ -104,6 +112,8 @@ function update() {
       y: this.ship.y,
       rotation: this.ship.rotation
     };
+
+    this.physics.world.wrap(this.ship, 0);
   }
 }
 

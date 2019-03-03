@@ -7,7 +7,11 @@ var players = {};
 
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", function(req, res) {
+app.get("/phaser/phaser.js", (req, res) => {
+  res.sendFile(__dirname + "/node_modules/phaser/dist/phaser.js");
+});
+
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
@@ -20,6 +24,7 @@ io.on("connection", socket => {
   });
   // when a player moves, update the player data
   socket.on("playerMovement", function(movementData) {
+    // TODO validate movement data
     players[socket.id].x = movementData.x;
     players[socket.id].y = movementData.y;
     players[socket.id].rotation = movementData.rotation;
