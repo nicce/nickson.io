@@ -1,5 +1,4 @@
-"use strict";
-
+("use strict");
 /*Doc on game config found here: https://photonstorm.github.io/phaser3-docs/global.html#GameConfig*/
 var config = {
   type: Phaser.AUTO,
@@ -69,16 +68,16 @@ function update() {
   if (this.ship) {
     this.input.keyboard.on("keydown_W", () => {
       this.physics.velocityFromRotation(
-        this.ship.rotation + 0.5,
-        20,
+        this.ship.rotation,
+        10,
         this.ship.body.acceleration
       );
     });
     this.input.keyboard.on("keydown_A", () => {
-      this.ship.setAngularVelocity(-150);
+      this.ship.setAngularVelocity(-100);
     });
     this.input.keyboard.on("keydown_D", () => {
-      this.ship.setAngularVelocity(150);
+      this.ship.setAngularVelocity(100);
     });
     this.input.keyboard.on("keydown_S", () => {
       this.ship.setAngularVelocity(0);
@@ -116,32 +115,3 @@ function update() {
     this.physics.world.wrap(this.ship, 0);
   }
 }
-
-let addPlayer = (self, playerInfo) => {
-  self.ship = self.physics.add
-    .image(playerInfo.x, playerInfo.y, "ship")
-    .setOrigin(0.5, 0.5)
-    .setDisplaySize(53, 40);
-  if (playerInfo.team === "blue") {
-    self.ship.setTint(0x0000ff);
-  } else {
-    self.ship.setTint(0xff0000);
-  }
-  self.ship.setDrag(100);
-  self.ship.setAngularDrag(100);
-  self.ship.setMaxVelocity(200);
-};
-
-let addOtherPlayers = (self, playerInfo) => {
-  const otherPlayer = self.add
-    .sprite(playerInfo.x, playerInfo.y, "otherPlayer")
-    .setOrigin(0.5, 0.5)
-    .setDisplaySize(53, 40);
-  if (playerInfo.team === "blue") {
-    otherPlayer.setTint(0x0000ff);
-  } else {
-    otherPlayer.setTint(0xff0000);
-  }
-  otherPlayer.playerId = playerInfo.playerId;
-  self.otherPlayers.add(otherPlayer);
-};
