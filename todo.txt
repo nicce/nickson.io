@@ -1,6 +1,6 @@
 This is a list of todos that needs to be done. Not necessary in correct order.
 
-1. Fix stearing
+1. Fix stearing - needs to be more direct when moving forward and stopping
 2. Camera feature on your ship.
 3. Be able to shoot with your ship on space.
 4. Possibility to shoot your opponents
