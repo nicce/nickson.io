@@ -1,4 +1,4 @@
-# Node playground
+# Phaser playground
 
 Project for learning game development with http://phaser.io/
 
