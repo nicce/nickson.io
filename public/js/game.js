@@ -68,8 +68,8 @@ function update() {
   if (this.ship) {
     this.input.keyboard.on("keydown_W", () => {
       this.physics.velocityFromRotation(
-        this.ship.rotation,
-        10,
+        this.ship.rotation + 1.5,
+        -100,
         this.ship.body.acceleration
       );
     });
@@ -80,7 +80,11 @@ function update() {
       this.ship.setAngularVelocity(100);
     });
     this.input.keyboard.on("keydown_S", () => {
-      this.ship.setAngularVelocity(0);
+      this.physics.velocityFromRotation(
+        this.ship.rotation + 1.5,
+        100,
+        this.ship.body.acceleration
+      );
     });
 
     //keyboard_SPACE not working so this is a workaround
