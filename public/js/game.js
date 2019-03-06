@@ -69,7 +69,7 @@ function update() {
     this.input.keyboard.on("keydown_W", () => {
       this.physics.velocityFromRotation(
         this.ship.rotation + 1.5,
-        -100,
+        100,
         this.ship.body.acceleration
       );
     });
@@ -82,7 +82,7 @@ function update() {
     this.input.keyboard.on("keydown_S", () => {
       this.physics.velocityFromRotation(
         this.ship.rotation + 1.5,
-        100,
+        -100,
         this.ship.body.acceleration
       );
     });
